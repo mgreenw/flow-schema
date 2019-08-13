@@ -1,0 +1,10 @@
+{
+  "extends": ["eslint:recommended", "plugin:prettier/recommended", "plugin:flowtype/recommended"],
+  "parser": "babel-eslint",
+  "plugins": ["flowtype"],
+  "env": {
+    "jest": true,
+    "node": true,
+    "es6": true
+  }
+}

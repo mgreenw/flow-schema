@@ -1,0 +1,41 @@
+{
+  "name": "flow-schema",
+  "version": "1.0.0-alpha.1",
+  "description": "A fast runtime schema validation library for Flow.",
+  "license": "MIT",
+  "author": "Max Greenwald",
+  "keywords": [
+    "flow",
+    "schema",
+    "validation"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mgreenw/flow-schema.git"
+  },
+  "homepage": "https://github.com/mgreenw/flow-schema",
+  "bugs": {
+    "url": "https://github.com/mgreenw/flow-schema/issues"
+  },
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "lint": "eslint ."
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@babel/cli": "^7.5.5",
+    "@babel/core": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "@babel/preset-flow": "^7.0.0",
+    "babel-eslint": "^10.0.2",
+    "eslint": "^6.1.0",
+    "eslint-config-prettier": "^6.0.0",
+    "eslint-plugin-flowtype": "^4.2.0",
+    "eslint-plugin-prettier": "^3.1.0",
+    "flow-bin": "^0.105.2",
+    "flow-typed": "^2.6.1",
+    "jest": "^24.8.0",
+    "prettier": "^1.18.2"
+  }
+}
