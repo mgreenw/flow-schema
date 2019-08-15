@@ -1,9 +1,2 @@
-[strict]
-
-[lints]
-
 [options]
-suppress_comment=\\(.\\|\n\\)*\\$FlowFixMe
 suppress_comment=\\(.\\|\n\\)*\\$ExpectError
-
-[ignore]
