@@ -277,11 +277,11 @@ describe('Array Type', () => {
 
   it('should accept map type', () => {
     type MapSchema = Array<{ [string]: string }>;
-    const schema = Flow.Array(Flow.map(Flow.string));
+    const schema = Flow.Array(Flow.ObjectMap(Flow.string));
 
     // map[] Schema Instance
     expect(schema).toBeInstanceOf(Flow.Schema);
-    (Flow.Array(Flow.map(Flow.string)): Flow.Schema<MapSchema>);
+    (Flow.Array(Flow.ObjectMap(Flow.string)): Flow.Schema<MapSchema>);
 
     // map[] Validation Success
     const vals = [{ first: 'hey', second: 'there' }, {}, { third: 'nice' }];
@@ -297,7 +297,9 @@ describe('Array Type', () => {
   });
 
   it('should only accept schemas, not literal values', () => {
-    expect(Flow.Array(new Flow.Schema('test', value => value))).toBeInstanceOf(Flow.Schema);
+    expect(Flow.Array(new Flow.Schema({ name: 'test', validate: value => value }))).toBeInstanceOf(
+      Flow.Schema
+    );
 
     // $ExpectError
     Flow.Array('10');
