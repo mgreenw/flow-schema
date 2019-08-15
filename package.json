@@ -19,8 +19,9 @@
   },
   "main": "index.js",
   "scripts": {
+    "lint": "eslint .",
     "test": "jest",
-    "lint": "eslint ."
+    "flow": "flow"
   },
   "dependencies": {},
   "devDependencies": {
