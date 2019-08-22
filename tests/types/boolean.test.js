@@ -2,7 +2,7 @@
 
 import { Flow } from '../..';
 
-describe('Boolean Type', () => {
+describe('Boolean Schema', () => {
   it('should accept anything as input and should fail if the value is not a boolean', () => {
     expect(Flow.boolean.validate(true)).toBe(true);
     expect(Flow.boolean.validate(false)).toBe(false);

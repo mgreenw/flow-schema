@@ -2,7 +2,7 @@
 
 import { Flow } from '../..';
 
-describe('Null Type', () => {
+describe('Null Schema', () => {
   it('should accept anything as input and should fail if the value is not null', () => {
     expect(Flow.null.validate(null)).toBe(null);
 

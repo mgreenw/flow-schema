@@ -2,7 +2,7 @@
 
 import { Flow } from '../..';
 
-describe('Void Type', () => {
+describe('Void Schema', () => {
   it('should accept anything as input and should fail if the value is not undefined', () => {
     expect(Flow.void.validate(undefined)).toBe(undefined);
 

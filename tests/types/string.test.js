@@ -2,7 +2,7 @@
 
 import { Flow } from '../..';
 
-describe('String Type', () => {
+describe('String Schema', () => {
   it('should accept anything as input and should fail if the value is not a string', () => {
     expect(Flow.string.validate('String')).toBe('String');
     expect(Flow.string.validate('1234')).toBe('1234');
