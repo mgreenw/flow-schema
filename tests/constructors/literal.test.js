@@ -19,6 +19,12 @@ describe('Literal Schema', () => {
     /*:: Flow.literal(new Date()); */
     // $ExpectError
     /*:: Flow.literal([1, 2, 'three']); */
+    // $ExpectError
+    /*:: Flow.literal(Flow.literal(10)); */
+    // $ExpectError
+    /*:: Flow.literal(Flow.number); */
+    // $ExpectError
+    /*:: Flow.literal(Flow.Object({ literal: Flow.boolean })); */
   });
 
   it('should infer the proper return type', () => {
