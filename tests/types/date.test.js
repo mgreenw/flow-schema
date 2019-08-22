@@ -2,7 +2,7 @@
 
 import { Flow } from '../..';
 
-describe('Date Type', () => {
+describe('Date Schema', () => {
   it('should accept anything as input and should fail if the value is not a Date', () => {
     const date = new Date();
     expect(Flow.Date.validate(date)).toBe(date);

@@ -2,7 +2,7 @@
 
 import { Flow } from '../..';
 
-describe('Array Type', () => {
+describe('Array Schema', () => {
   it('should throw if the value is not an array', () => {
     expect(() => Flow.Array(Flow.any).validate(123)).toThrow(Flow.ValidationError);
     expect(() => Flow.Array(Flow.number).validate(123)).toThrow(Flow.ValidationError);

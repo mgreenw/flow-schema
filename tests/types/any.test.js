@@ -2,7 +2,7 @@
 
 import { Flow } from '../..';
 
-describe('Any Type', () => {
+describe('Any Schema', () => {
   it('should accept anything as input and should never fail', () => {
     expect(Flow.any.validate('String')).toBe('String');
     expect(Flow.any.validate(123)).toBe(123);

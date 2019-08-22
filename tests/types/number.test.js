@@ -2,7 +2,7 @@
 
 import { Flow } from '../..';
 
-describe('Number Type', () => {
+describe('Number Schema', () => {
   it('should accept anything as input and should fail if the value is not a number', () => {
     expect(Flow.number.validate(123)).toBe(123);
     expect(Flow.number.validate(0)).toBe(0);

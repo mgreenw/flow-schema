@@ -1,3 +1,3 @@
 // @flow
 
-test.todo('Intersection Type');
+test.todo('Intersection Schema');
