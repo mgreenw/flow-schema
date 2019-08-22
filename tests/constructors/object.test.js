@@ -16,8 +16,12 @@ describe('Object Schema', () => {
     /*:: Flow.Object(true); */
     // $ExpectError Because a Date an Object, we call validate for Flow to realize the error here
     /*:: Flow.Object(new Date()).validate('aou'); */
-    // $ExpectError Because a Date an Object, we call validate for Flow to realize the error here
+    // $ExpectError
     /*:: Flow.Object([1, 2]); */
+    // $ExpectError
+    /*:: Flow.Object(Flow.number).validate('nice'); */
+    // $ExpectError
+    /*:: Flow.Object(Flow.Object({ test: Flow.number })).validate('bad'); */
   });
 
   it('should succeed for an empty object', () => {
