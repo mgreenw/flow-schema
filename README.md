@@ -38,7 +38,7 @@ const oops = Flow.string.validate(123);
 ```javascript
 // @flow
 
-import * as Flow from 'flow-schema';
+import { Flow } from 'flow-schema';
 
 // Define Login type and schema
 type Login =
