@@ -77,17 +77,6 @@ describe('Union Schema', () => {
         })
       ).validate({ obj: { test: null } })
     ).toStrictEqual({ obj: { test: null } });
-    expect(() =>
-      Flow.union(
-        Flow.Object({ string: Flow.string }),
-        Flow.Object({ number: Flow.number }),
-        Flow.Object({
-          obj: Flow.Object({
-            test: Flow.null,
-          }),
-        })
-      ).validate({ string: 'string', number: 10, obj: { test: null } })
-    ).toThrow(Flow.ValidationError);
   });
 
   it('should allow for a disjoint union', () => {
