@@ -2,10 +2,6 @@
 
 Flow Schema is a fast runtime schema validation library for [Flow](https://flow.org).
 
-## API
-
-WIP.
-
 ## Motivation
 
 Javascript excels at interacting with external datas sources (APIs, Databases, files, etc). However, validating incoming data that is `any` typed challenges our type system. Instead of using a value blindly, we want to validate that a value is typed as we expect.
@@ -13,6 +9,11 @@ Javascript excels at interacting with external datas sources (APIs, Databases, f
 Although there are plenty of Javascript object schema validation libraries like [Joi](https://github.com/hapijs/joi) and [ajv](https://github.com/epoberezkin/ajv), most do not validate objects to their proper [Flow](https://flow.org) type.
 
 Flow Schema provides a simple API to construct type schemas that can be used to synchronously validate the types of untrusted objects to their proper [Flow](https://flow.org) type. If validation fails, Flow Schema will throw a `ValidationError` with a descriptive error message. This allows Flow Schema to be used in a `try {} catch (error) {}` block
+
+## API Documentation
+
+See the full API documentation [here](./docs/Flow.md);
+
 
 ## Example
 
