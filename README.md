@@ -12,7 +12,7 @@ Flow Schema provides a simple API to construct type schemas that can be used to 
 
 ## API Documentation
 
-See the full API documentation [here](./docs/Flow.md);
+See the full API documentation [here](./doc/Flow.md);
 
 
 ## Example
