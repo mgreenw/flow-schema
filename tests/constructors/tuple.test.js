@@ -57,6 +57,18 @@ describe('Tuple Schema', () => {
     ).toThrow(Flow.ValidationError);
   });
 
-  // it('should fail if the tuple values do not match the schema', () => {});
-  // It should throw if the values are ba
+  it('should fail if the tuple values do not match the schema', () => {
+    expect(() => Flow.tuple(Flow.string).validate([{ string: 'string' }])).toThrow(
+      Flow.ValidationError
+    );
+    expect(() => Flow.tuple(Flow.boolean, Flow.number).validate([true, true])).toThrow(
+      Flow.ValidationError
+    );
+    expect(() =>
+      Flow.tuple(Flow.null, Flow.Object({ void: Flow.void })).validate([
+        null,
+        { void: true, other: undefined },
+      ])
+    ).toThrow(Flow.ValidationError);
+  });
 });
