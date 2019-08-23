@@ -25,7 +25,6 @@ describe('Union Schema', () => {
 
   it('should properly flow type unions', () => {
     (Flow.union(Flow.number).validate(10): number);
-    // This can't happen but it technically allowed in flow.
     (Flow.union(Flow.number, Flow.string).validate(10): number | string);
     (Flow.union(Flow.boolean, Flow.number, Flow.void).validate(10): number | void | boolean);
 
