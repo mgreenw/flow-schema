@@ -10,6 +10,15 @@ Although there are plenty of Javascript object schema validation libraries like 
 
 Flow Schema provides a simple API to construct type schemas that can be used to synchronously validate the types of untrusted objects to their proper [Flow](https://flow.org) type. If validation fails, Flow Schema will throw a `ValidationError` with a descriptive error message. This allows Flow Schema to be used in a `try {} catch (error) {}` block
 
+## Installation
+
+```js
+npm install flow-schema
+```
+
+_Flow Schema is in alpha and should not be used in production systems._
+
+
 ## API Documentation
 
 See the full API documentation [here](./doc/Flow.md).
