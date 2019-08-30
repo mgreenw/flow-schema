@@ -20,27 +20,27 @@ A `Schema<T>` is the main object class in `flow-schema`. A `Schema<T>` has the f
 
 _Here are the base type schemas and their Flow equivalent._
 
-- `Flow.void` (`void`)
-- `Flow.null` (`null`)
-- `Flow.string` (`string`)
-- `Flow.boolean` (`boolean`)
-- `Flow.number` (`number`)
-- `Flow.Date` (`Date`)
-- `Flow.any` (`any`)
-- `Flow.mixed` (`mixed`)
+- `FS.void` (`void`)
+- `FS.null` (`null`)
+- `FS.string` (`string`)
+- `FS.boolean` (`boolean`)
+- `FS.number` (`number`)
+- `FS.Date` (`Date`)
+- `FS.any` (`any`)
+- `FS.mixed` (`mixed`)
 
 ## Type Schema Constructors (by example)
 
 _Here are the more powerful "schema constructors" that, when called, these each return a `Schema` that validates to the listed Flow equivalent._
 s
 
-- `Flow.Object(schemas: { keyOne: Schema<A>, keyTwo: Schema<B>, ... })` (`{ { keyOne: A, keyTwo: B, ... } }`)
-- `Flow.Array(Schema<T>)` (`T[]`)
-- `Flow.ObjectMap(Schema<T>)` (`{ [string]: T }`)
-- `Flow.intersection(Schema<A>, Schema<B>, Schema<C>, ...)` (`A & B & C & ...`)
-- `Flow.union(Schema<A>, Schema<B>, Schema<C>, ...)` (`A | B | C | ...`)
-- `Flow.$Keys({ keyOne: 'one', keyTwo: 'two' })` (`'one' | 'two'`)
-- `Flow.$ReadOnly(Schema<T>)` (`$ReadOnly<T>`)
-- `Flow.$ReadOnlyArray(Schema<T>)` (`$ReadOnlyArray<T>`)
-- `Flow.tuple(Schema<A>, Schema<B>, Schema<C>, ...)` (`[A, B, C, ...]`)
-- `Flow.literal<V>(V)` (`V`)
+- `FS.Object(schemas: { keyOne: Schema<A>, keyTwo: Schema<B>, ... })` (`{ { keyOne: A, keyTwo: B, ... } }`)
+- `FS.Array(Schema<T>)` (`T[]`)
+- `FS.ObjectMap(Schema<T>)` (`{ [string]: T }`)
+- `FS.intersection(Schema<A>, Schema<B>, Schema<C>, ...)` (`A & B & C & ...`)
+- `FS.union(Schema<A>, Schema<B>, Schema<C>, ...)` (`A | B | C | ...`)
+- `FS.$Keys({ keyOne: 'one', keyTwo: 'two' })` (`'one' | 'two'`)
+- `FS.$ReadOnly(Schema<T>)` (`$ReadOnly<T>`)
+- `FS.$ReadOnlyArray(Schema<T>)` (`$ReadOnlyArray<T>`)
+- `FS.tuple(Schema<A>, Schema<B>, Schema<C>, ...)` (`[A, B, C, ...]`)
+- `FS.literal<V>(V)` (`V`)

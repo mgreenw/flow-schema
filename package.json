@@ -1,7 +1,7 @@
 {
   "name": "flow-schema",
   "version": "1.0.0-alpha.1",
-  "description": "A fast runtime schema validation library for Flow.",
+  "description": "A fast runtime schema validation library for FS.",
   "license": "MIT",
   "author": "Max Greenwald",
   "keywords": [

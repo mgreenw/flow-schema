@@ -1,77 +1,75 @@
 // @flow
 
-import { Flow } from '../..';
+import FS from '../..';
 
 describe('Union Schema', () => {
   // It should not accept non-schema values
   it('should not pass Flow if a non-Schema is passed in', () => {
     // $ExpectError
-    /*:: Flow.union(1); */
+    /*:: FS.union(1); */
     // $ExpectError
-    /*:: Flow.union(true); */
+    /*:: FS.union(true); */
     // $ExpectError
-    /*:: Flow.union('string'); */
+    /*:: FS.union('string'); */
     // $ExpectError
-    /*:: Flow.union(null); */
+    /*:: FS.union(null); */
     // $ExpectError
-    /*:: Flow.union(undefined); */
+    /*:: FS.union(undefined); */
     // $ExpectError
-    /*:: Flow.union(['one', 'two']); */
+    /*:: FS.union(['one', 'two']); */
     // $ExpectError
-    /*:: Flow.union(new Date()); */
+    /*:: FS.union(new Date()); */
     // $ExpectError
-    /*:: Flow.union(1, 2, 'three'); */
+    /*:: FS.union(1, 2, 'three'); */
   });
 
   it('should properly flow type unions', () => {
-    (Flow.union(Flow.number).validate(10): number);
-    (Flow.union(Flow.number, Flow.string).validate(10): number | string);
-    (Flow.union(Flow.boolean, Flow.number, Flow.void).validate(10): number | void | boolean);
+    (FS.union(FS.number).validate(10): number);
+    (FS.union(FS.number, FS.string).validate(10): number | string);
+    (FS.union(FS.boolean, FS.number, FS.void).validate(10): number | void | boolean);
 
-    (Flow.union(
-      Flow.Object({ string: Flow.string }),
-      Flow.Object({ number: Flow.number })
-    ).validate({ string: 'string', number: 10 }): { string: string } | { number: number });
+    (FS.union(FS.Object({ string: FS.string }), FS.Object({ number: FS.number })).validate({
+      string: 'string',
+      number: 10,
+    }): { string: string } | { number: number });
   });
 
   it('should fail if the value passed in does not match the union', () => {
-    expect(() => Flow.union(Flow.number).validate(true)).toThrow(Flow.ValidationError);
-    expect(() => Flow.union(Flow.null).validate('10')).toThrow(Flow.ValidationError);
+    expect(() => FS.union(FS.number).validate(true)).toThrow(FS.ValidationError);
+    expect(() => FS.union(FS.null).validate('10')).toThrow(FS.ValidationError);
     expect(() =>
-      Flow.union(
-        Flow.Object({ string: Flow.string }),
-        Flow.Object({ number: Flow.number })
-      ).validate({ boolean: true })
-    ).toThrow(Flow.ValidationError);
+      FS.union(FS.Object({ string: FS.string }), FS.Object({ number: FS.number })).validate({
+        boolean: true,
+      })
+    ).toThrow(FS.ValidationError);
     expect(() =>
-      Flow.union(
-        Flow.Object({ string: Flow.string }),
-        Flow.Object({ number: Flow.number }),
-        Flow.Object({
-          obj: Flow.Object({
-            test: Flow.void,
+      FS.union(
+        FS.Object({ string: FS.string }),
+        FS.Object({ number: FS.number }),
+        FS.Object({
+          obj: FS.Object({
+            test: FS.void,
           }),
         })
       ).validate({ string: false })
-    ).toThrow(Flow.ValidationError);
+    ).toThrow(FS.ValidationError);
   });
 
   it('should succeed if the value passed in matches the defined union', () => {
-    expect(Flow.union(Flow.number).validate(10)).toStrictEqual(10);
-    expect(Flow.union(Flow.null).validate(null)).toStrictEqual(null);
+    expect(FS.union(FS.number).validate(10)).toStrictEqual(10);
+    expect(FS.union(FS.null).validate(null)).toStrictEqual(null);
     expect(
-      Flow.union(
-        Flow.Object({ string: Flow.string }),
-        Flow.Object({ number: Flow.number })
-      ).validate({ string: 'string' })
+      FS.union(FS.Object({ string: FS.string }), FS.Object({ number: FS.number })).validate({
+        string: 'string',
+      })
     ).toStrictEqual({ string: 'string' });
     expect(
-      Flow.union(
-        Flow.Object({ string: Flow.string }),
-        Flow.Object({ number: Flow.number }),
-        Flow.Object({
-          obj: Flow.Object({
-            test: Flow.null,
+      FS.union(
+        FS.Object({ string: FS.string }),
+        FS.Object({ number: FS.number }),
+        FS.Object({
+          obj: FS.Object({
+            test: FS.null,
           }),
         })
       ).validate({ obj: { test: null } })
@@ -79,18 +77,18 @@ describe('Union Schema', () => {
   });
 
   it('should allow for a disjoint union', () => {
-    const DJUSchema = Flow.union(
-      Flow.Object({
-        type: Flow.literal<'number'>('number'),
-        number: Flow.number,
+    const DJUSchema = FS.union(
+      FS.Object({
+        type: FS.literal<'number'>('number'),
+        number: FS.number,
       }),
-      Flow.Object({
-        type: Flow.literal<'boolean'>('boolean'),
-        boolean: Flow.boolean,
+      FS.Object({
+        type: FS.literal<'boolean'>('boolean'),
+        boolean: FS.boolean,
       }),
-      Flow.Object({
-        type: Flow.literal<'string'>('string'),
-        string: Flow.string,
+      FS.Object({
+        type: FS.literal<'string'>('string'),
+        string: FS.string,
       })
     );
 

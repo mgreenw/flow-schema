@@ -1,51 +1,51 @@
 // @flow
 
-import { Flow } from '../..';
+import FS from '../..';
 
 describe('Literal Schema', () => {
   it('should only allow strings, booleans, and numbers', () => {
-    Flow.literal(true);
-    Flow.literal(123);
-    Flow.literal('test string');
+    FS.literal(true);
+    FS.literal(123);
+    FS.literal('test string');
     // $ExpectError
-    /*:: Flow.literal(null); */
+    /*:: FS.literal(null); */
     // $ExpectError
-    /*:: Flow.literal(undefined); */
+    /*:: FS.literal(undefined); */
     // $ExpectError
-    /*:: Flow.literal({}); */
+    /*:: FS.literal({}); */
     // $ExpectError
-    /*:: Flow.literal({ object: 'with properties' }); */
+    /*:: FS.literal({ object: 'with properties' }); */
     // $ExpectError
-    /*:: Flow.literal(new Date()); */
+    /*:: FS.literal(new Date()); */
     // $ExpectError
-    /*:: Flow.literal([1, 2, 'three']); */
+    /*:: FS.literal([1, 2, 'three']); */
     // $ExpectError
-    /*:: Flow.literal(Flow.literal(10)); */
+    /*:: FS.literal(FS.literal(10)); */
     // $ExpectError
-    /*:: Flow.literal(Flow.number); */
+    /*:: FS.literal(FS.number); */
     // $ExpectError
-    /*:: Flow.literal(Flow.Object({ literal: Flow.boolean })); */
+    /*:: FS.literal(FS.Object({ literal: FS.boolean })); */
   });
 
   it('should infer the proper return type', () => {
-    (Flow.literal<true>(true).validate(true): true);
-    (Flow.literal<123>(123).validate(123): 123);
-    (Flow.literal<'test string'>('test string').validate('test string'): 'test string');
+    (FS.literal<true>(true).validate(true): true);
+    (FS.literal<123>(123).validate(123): 123);
+    (FS.literal<'test string'>('test string').validate('test string'): 'test string');
   });
 
   it('should properly validate literal values', () => {
-    expect(Flow.literal<true>(true).validate(true)).toBe(true);
-    expect(Flow.literal<123>(123).validate(123)).toBe(123);
-    expect(Flow.literal<'test string'>('test string').validate('test string')).toBe('test string');
+    expect(FS.literal<true>(true).validate(true)).toBe(true);
+    expect(FS.literal<123>(123).validate(123)).toBe(123);
+    expect(FS.literal<'test string'>('test string').validate('test string')).toBe('test string');
   });
 
   it('should throw an error if the values are not equal to that literal', () => {
-    expect(() => Flow.literal<true>(true).validate(false)).toThrow(Flow.ValidationError);
-    expect(() => Flow.literal<123>(123).validate(124)).toThrow(Flow.ValidationError);
-    expect(() => Flow.literal<'test'>('test').validate('tester')).toThrow(Flow.ValidationError);
+    expect(() => FS.literal<true>(true).validate(false)).toThrow(FS.ValidationError);
+    expect(() => FS.literal<123>(123).validate(124)).toThrow(FS.ValidationError);
+    expect(() => FS.literal<'test'>('test').validate('tester')).toThrow(FS.ValidationError);
 
-    expect(() => Flow.literal<true>(true).validate(123)).toThrow(Flow.ValidationError);
-    expect(() => Flow.literal<123>(123).validate(true)).toThrow(Flow.ValidationError);
-    expect(() => Flow.literal<'test'>('test').validate(true)).toThrow(Flow.ValidationError);
+    expect(() => FS.literal<true>(true).validate(123)).toThrow(FS.ValidationError);
+    expect(() => FS.literal<123>(123).validate(true)).toThrow(FS.ValidationError);
+    expect(() => FS.literal<'test'>('test').validate(true)).toThrow(FS.ValidationError);
   });
 });

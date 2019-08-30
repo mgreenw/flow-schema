@@ -1,40 +1,40 @@
 // @flow
 
-import { Flow } from '../..';
+import FS from '../..';
 
 describe('Object Schema', () => {
   it('should not pass Flow in the input is not an object', () => {
     // $ExpectError
-    /*:: Flow.Object(undefined); */
+    /*:: FS.Object(undefined); */
     // $ExpectError
-    /*:: Flow.Object(null); */
+    /*:: FS.Object(null); */
     // $ExpectError
-    /*:: Flow.Object(123); */
+    /*:: FS.Object(123); */
     // $ExpectError
-    /*:: Flow.Object('hey'); */
+    /*:: FS.Object('hey'); */
     // $ExpectError
-    /*:: Flow.Object(true); */
+    /*:: FS.Object(true); */
     // $ExpectError Because a Date an Object, we call validate for Flow to realize the error here
-    /*:: Flow.Object(new Date()).validate('aou'); */
+    /*:: FS.Object(new Date()).validate('aou'); */
     // $ExpectError
-    /*:: Flow.Object([1, 2]); */
+    /*:: FS.Object([1, 2]); */
     // $ExpectError
-    /*:: Flow.Object(Flow.number).validate('nice'); */
+    /*:: FS.Object(FS.number).validate('nice'); */
     // $ExpectError
-    /*:: Flow.Object(Flow.Object({ test: Flow.number })).validate('bad'); */
+    /*:: FS.Object(FS.Object({ test: FS.number })).validate('bad'); */
   });
 
   it('should succeed for an empty object', () => {
-    expect(Flow.Object({}).validate({})).toStrictEqual({});
+    expect(FS.Object({}).validate({})).toStrictEqual({});
   });
 
   it('validate an object with properties of many types', () => {
-    const ObjectSchema = Flow.Object({
-      boolean: Flow.boolean,
-      number: Flow.number,
-      string: Flow.string,
-      undefined: Flow.void,
-      null: Flow.null,
+    const ObjectSchema = FS.Object({
+      boolean: FS.boolean,
+      number: FS.number,
+      string: FS.string,
+      undefined: FS.void,
+      null: FS.null,
     });
 
     const value = {
@@ -51,12 +51,12 @@ describe('Object Schema', () => {
   });
 
   it('should remove additional properties from the value', () => {
-    const ObjectSchema = Flow.Object({
-      boolean: Flow.boolean,
-      number: Flow.number,
-      string: Flow.string,
-      undefined: Flow.void,
-      null: Flow.null,
+    const ObjectSchema = FS.Object({
+      boolean: FS.boolean,
+      number: FS.number,
+      string: FS.string,
+      undefined: FS.void,
+      null: FS.null,
     });
 
     const value = {
@@ -70,10 +70,10 @@ describe('Object Schema', () => {
     const valuePlus = {
       ...value,
       // These properties should be removed
-      these: Flow.any,
-      properties: Flow.number,
-      should: Flow.string,
-      be: Flow.Object({ removed: Flow.string }),
+      these: FS.any,
+      properties: FS.number,
+      should: FS.string,
+      be: FS.Object({ removed: FS.string }),
     };
 
     const result = ObjectSchema.validate(valuePlus);
@@ -82,11 +82,11 @@ describe('Object Schema', () => {
   });
 
   it('should properly validate nested objects', () => {
-    const ObjectSchema = Flow.Object({
-      boolean: Flow.boolean,
-      obj: Flow.Object({
-        number: Flow.number,
-        string: Flow.literal<'hey'>('hey'),
+    const ObjectSchema = FS.Object({
+      boolean: FS.boolean,
+      obj: FS.Object({
+        number: FS.number,
+        string: FS.literal<'hey'>('hey'),
       }),
     });
 
@@ -104,11 +104,11 @@ describe('Object Schema', () => {
   });
 
   it('should fail validation if properties do not match their expected type', () => {
-    const ObjectSchema = Flow.Object({
-      boolean: Flow.boolean,
-      obj: Flow.Object({
-        number: Flow.number,
-        string: Flow.literal<'hey'>('hey'),
+    const ObjectSchema = FS.Object({
+      boolean: FS.boolean,
+      obj: FS.Object({
+        number: FS.number,
+        string: FS.literal<'hey'>('hey'),
       }),
     });
 
@@ -120,6 +120,6 @@ describe('Object Schema', () => {
       },
     };
 
-    expect(() => ObjectSchema.validate(value)).toThrow(Flow.ValidationError);
+    expect(() => ObjectSchema.validate(value)).toThrow(FS.ValidationError);
   });
 });

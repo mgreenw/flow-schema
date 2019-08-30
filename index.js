@@ -1,6 +1,5 @@
 // @flow
+import * as FS from './lib';
+export * from './lib';
 
-import * as Flow from './lib';
-export { Flow };
-
-const lol = Flow.Array(Flow.string);
+export default FS;

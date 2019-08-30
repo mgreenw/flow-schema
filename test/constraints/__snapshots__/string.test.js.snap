@@ -1,0 +1,117 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`String Constraints length 1`] = `
+"ValidationError
+
+Expected: string /* length === 10 */
+Received: \\"123456789\\" (String)
+
+Violated Constraints (1):
+-  length === 10
+"
+`;
+
+exports[`String Constraints length 2`] = `
+"ValidationError
+
+Expected: string /* length === 8 */
+Received: \\"123456789\\" (String)
+
+Violated Constraints (1):
+-  length === 8
+"
+`;
+
+exports[`String Constraints length 3`] = `"String length constraint must be positive (received -4)"`;
+
+exports[`String Constraints lowercase 1`] = `
+"ValidationError
+
+Expected: string /* lowercase */
+Received: \\"not ALL LOWERCASE\\" (String)
+
+Violated Constraints (1):
+-  lowercase
+"
+`;
+
+exports[`String Constraints lowercase 2`] = `
+"ValidationError
+
+Expected: string /* lowercase */
+Received: \\"ABC123\\" (String)
+
+Violated Constraints (1):
+-  lowercase
+"
+`;
+
+exports[`String Constraints max 1`] = `
+"ValidationError
+
+Expected: string /* <= 10 */
+Received: \\"12345678910\\" (String)
+
+Violated Constraints (1):
+-  <= 10
+"
+`;
+
+exports[`String Constraints max 2`] = `
+"ValidationError
+
+Expected: string /* <= 8 */
+Received: \\"123456789101112\\" (String)
+
+Violated Constraints (1):
+-  <= 8
+"
+`;
+
+exports[`String Constraints max 3`] = `"Maximum string length constraint must be positive (received -1)"`;
+
+exports[`String Constraints min 1`] = `
+"ValidationError
+
+Expected: string /* length >= 10 */
+Received: \\"123456789\\" (String)
+
+Violated Constraints (1):
+-  length >= 10
+"
+`;
+
+exports[`String Constraints min 2`] = `
+"ValidationError
+
+Expected: string /* length >= 3.5 */
+Received: \\"123\\" (String)
+
+Violated Constraints (1):
+-  length >= 3.5
+"
+`;
+
+exports[`String Constraints min 3`] = `"Minimum string length constraint must be positive (received -10)"`;
+
+exports[`String Constraints uppercase 1`] = `
+"ValidationError
+
+Expected: string /* uppercase */
+Received: \\"not ALL UPPERCASE\\" (String)
+
+Violated Constraints (1):
+-  uppercase
+"
+`;
+
+exports[`String Constraints uppercase 2`] = `
+"ValidationError
+
+Expected: string /* uppercase */
+Received: \\"abc123\\" (String)
+
+Violated Constraints (1):
+-  uppercase
+"
+`;

@@ -1,91 +1,85 @@
 // @flow
 
-import { Flow } from '../..';
+import FS from '../..';
 
 describe('Intersection Schema', () => {
   // It should not accept non-schema values
   it('should not pass Flow if a non-Schema is passed in', () => {
     // $ExpectError
-    /*:: Flow.intersection(1); */
+    /*:: FS.intersection(1); */
     // $ExpectError
-    /*:: Flow.intersection(true); */
+    /*:: FS.intersection(true); */
     // $ExpectError
-    /*:: Flow.intersection('string'); */
+    /*:: FS.intersection('string'); */
     // $ExpectError
-    /*:: Flow.intersection(null); */
+    /*:: FS.intersection(null); */
     // $ExpectError
-    /*:: Flow.intersection(undefined); */
+    /*:: FS.intersection(undefined); */
     // $ExpectError
-    /*:: Flow.intersection(['one', 'two']); */
+    /*:: FS.intersection(['one', 'two']); */
     // $ExpectError
-    /*:: Flow.intersection(new Date()); */
+    /*:: FS.intersection(new Date()); */
     // $ExpectError
-    /*:: Flow.intersection(1, 2, 'three'); */
+    /*:: FS.intersection(1, 2, 'three'); */
   });
 
   it('should properly flow type intersections', () => {
-    (Flow.intersection(Flow.number).validate(10): number);
-    // This can't happen but it technically allowed in flow.
-    /*:: (Flow.intersection(Flow.number, Flow.string).validate(10): number & string); */
-    (Flow.intersection(
-      Flow.Object({ string: Flow.string }),
-      Flow.Object({ number: Flow.number })
-    ).validate({ string: 'string', number: 10 }): { string: string, number: number });
+    (FS.intersection(FS.number).validate(10): number);
+    // This can't happen but it technically allowed in FS.
+    /*:: (FS.intersection(FS.number, FS.string).validate(10): number & string); */
+    (FS.intersection(FS.Object({ string: FS.string }), FS.Object({ number: FS.number })).validate({
+      string: 'string',
+      number: 10,
+    }): { string: string, number: number });
   });
 
   it('should fail if the intersection is impossible', () => {
-    expect(() => Flow.intersection(Flow.number, Flow.string).validate(10)).toThrow(
-      Flow.ValidationError
-    );
-    expect(() => Flow.intersection(Flow.number, Flow.null).validate(null)).toThrow(
-      Flow.ValidationError
-    );
+    expect(() => FS.intersection(FS.number, FS.string).validate(10)).toThrow(FS.ValidationError);
+    expect(() => FS.intersection(FS.number, FS.null).validate(null)).toThrow(FS.ValidationError);
     expect(() =>
-      Flow.intersection(
-        Flow.Object({ test: Flow.string }),
-        Flow.Object({ test: Flow.number })
-      ).validate({ test: 'string' })
-    ).toThrow(Flow.ValidationError);
+      FS.intersection(FS.Object({ test: FS.string }), FS.Object({ test: FS.number })).validate({
+        test: 'string',
+      })
+    ).toThrow(FS.ValidationError);
   });
 
   it('should fail if the value passed in does not match the intersection', () => {
-    expect(() => Flow.intersection(Flow.number).validate(true)).toThrow(Flow.ValidationError);
-    expect(() => Flow.intersection(Flow.null).validate('10')).toThrow(Flow.ValidationError);
+    expect(() => FS.intersection(FS.number).validate(true)).toThrow(FS.ValidationError);
+    expect(() => FS.intersection(FS.null).validate('10')).toThrow(FS.ValidationError);
     expect(() =>
-      Flow.intersection(
-        Flow.Object({ string: Flow.string }),
-        Flow.Object({ number: Flow.number })
-      ).validate({ string: 'string' })
-    ).toThrow(Flow.ValidationError);
+      FS.intersection(FS.Object({ string: FS.string }), FS.Object({ number: FS.number })).validate({
+        string: 'string',
+      })
+    ).toThrow(FS.ValidationError);
     expect(() =>
-      Flow.intersection(
-        Flow.Object({ string: Flow.string }),
-        Flow.Object({ number: Flow.number }),
-        Flow.Object({
-          obj: Flow.Object({
-            test: Flow.void,
+      FS.intersection(
+        FS.Object({ string: FS.string }),
+        FS.Object({ number: FS.number }),
+        FS.Object({
+          obj: FS.Object({
+            test: FS.void,
           }),
         })
-      ).validate({ string: 'string', number: 10, obj: { test: Flow.string } })
-    ).toThrow(Flow.ValidationError);
+      ).validate({ string: 'string', number: 10, obj: { test: FS.string } })
+    ).toThrow(FS.ValidationError);
   });
 
   it('should succeed if the value passed in matches the defined intersection', () => {
-    expect(Flow.intersection(Flow.number).validate(10)).toStrictEqual(10);
-    expect(Flow.intersection(Flow.null).validate(null)).toStrictEqual(null);
+    expect(FS.intersection(FS.number).validate(10)).toStrictEqual(10);
+    expect(FS.intersection(FS.null).validate(null)).toStrictEqual(null);
     expect(
-      Flow.intersection(
-        Flow.Object({ string: Flow.string }),
-        Flow.Object({ number: Flow.number })
-      ).validate({ string: 'string', number: 10 })
+      FS.intersection(FS.Object({ string: FS.string }), FS.Object({ number: FS.number })).validate({
+        string: 'string',
+        number: 10,
+      })
     ).toStrictEqual({ string: 'string', number: 10 });
     expect(
-      Flow.intersection(
-        Flow.Object({ string: Flow.string }),
-        Flow.Object({ number: Flow.number }),
-        Flow.Object({
-          obj: Flow.Object({
-            test: Flow.null,
+      FS.intersection(
+        FS.Object({ string: FS.string }),
+        FS.Object({ number: FS.number }),
+        FS.Object({
+          obj: FS.Object({
+            test: FS.null,
           }),
         })
       ).validate({ string: 'string', number: 10, obj: { test: null } })

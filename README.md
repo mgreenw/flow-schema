@@ -1,18 +1,18 @@
 # Flow Schema
 
-Flow Schema is a fast runtime schema validation library for [Flow](https://flow.org).
+Flow Schema is a fast runtime schema validation library for [Flow](https://FS.org).
 
 ## Motivation
 
 Javascript excels at interacting with external datas sources (APIs, Databases, files, etc). However, validating incoming data that is `any` typed challenges our type system. Instead of using a value blindly, we want to validate that a value is typed as we expect.
 
-Although there are plenty of Javascript object schema validation libraries like [Joi](https://github.com/hapijs/joi) and [ajv](https://github.com/epoberezkin/ajv), most do not validate objects to their proper [Flow](https://flow.org) type.
+Although there are plenty of Javascript object schema validation libraries like [Joi](https://github.com/hapijs/joi) and [ajv](https://github.com/epoberezkin/ajv), most do not validate objects to their proper [Flow](https://FS.org) type.
 
-Flow Schema provides a simple API to construct type schemas that can be used to synchronously validate the types of untrusted objects to their proper [Flow](https://flow.org) type. If validation fails, Flow Schema will throw a `ValidationError` with a descriptive error message. This allows Flow Schema to be used in a `try {} catch (error) {}` block
+Flow Schema provides a simple API to construct type schemas that can be used to synchronously validate the types of untrusted objects to their proper [Flow](https://FS.org) type. If validation fails, Flow Schema will throw a `ValidationError` with a descriptive error message. This allows Flow Schema to be used in a `try {} catch (error) {}` block
 
 ## API Documentation
 
-See the full API documentation [here](./doc/Flow.md).
+See the full API documentation [here](./doc/FS.md).
 
 
 ## Example
@@ -21,10 +21,10 @@ See the full API documentation [here](./doc/Flow.md).
 
 ```javascript
 // Success
-const success = Flow.string.validate('success');
+const success = FS.string.validate('success');
 
 // Error
-const oops = Flow.string.validate(123);
+const oops = FS.string.validate(123);
 
 /*
   Error: ValidationError
@@ -49,11 +49,11 @@ type Login =
       attempt: number | null,
     };
 
-const LoginSchema = Flow.union(
-  Flow.string,
-  Flow.Object({
-    ip: Flow.string,
-    attempt: Flow.number.nullable,
+const LoginSchema = FS.union(
+  FS.string,
+  FS.Object({
+    ip: FS.string,
+    attempt: FS.number.nullable,
   })
 );
 
@@ -65,11 +65,11 @@ type User = {
   logins: Array<Login>,
 };
 
-const UserSchema = Flow.Object({
-  name: Flow.string,
-  birthday: Flow.Date,
-  email: Flow.string,
-  logins: Flow.Array(LoginSchema),
+const UserSchema = FS.Object({
+  name: FS.string,
+  birthday: FS.Date,
+  email: FS.string,
+  logins: FS.Array(LoginSchema),
 });
 
 // Get some API Data
@@ -84,7 +84,7 @@ try {
   (user: User);
 } catch (error) {
   // Rethrow if the error is not a ValidationError
-  if (!(error instanceof Flow.ValidationError)) throw error;
+  if (!(error instanceof FS.ValidationError)) throw error;
 
   // Handle the Validation Error
   Sentry.catchException(new Error('This was not suppossed to happen'));
