@@ -39,7 +39,7 @@ const oops = FS.string.validate(123);
 ```javascript
 // @flow
 
-import { Flow } from 'flow-schema';
+import FS from 'flow-schema';
 
 // Define Login type and schema
 type Login =

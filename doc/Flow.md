@@ -3,7 +3,7 @@
 _NOTE_: These docs are still a work in progress.
 
 ```js
-import { Flow } from 'flow-schema';
+import FS from 'flow-schema';
 ```
 
 ## Schema
