@@ -20,27 +20,31 @@ A `Schema<T>` is the main object class in `flow-schema`. A `Schema<T>` has the f
 
 _Here are the base type schemas and their Flow equivalent._
 
-- `FS.void` (`void`)
-- `FS.null` (`null`)
-- `FS.string` (`string`)
-- `FS.boolean` (`boolean`)
-- `FS.number` (`number`)
-- `FS.Date` (`Date`)
-- `FS.any` (`any`)
-- `FS.mixed` (`mixed`)
+| Type    | Schema     |
+|---------|------------|
+| void    | FS.void    |
+| null    | FS.null    |
+| string  | FS.string  |
+| boolean | FS.boolean |
+| number  | FS.number  |
+| Date    | FS.Date    |
+| any     | FS.any     |
+| mixed   | FS.mixed   |
 
 ## Type Schema Constructors (by example)
 
 _Here are the more powerful "schema constructors" that, when called, these each return a `Schema` that validates to the listed Flow equivalent._
 s
 
-- `FS.Object(schemas: { keyOne: Schema<A>, keyTwo: Schema<B>, ... })` (`{ { keyOne: A, keyTwo: B, ... } }`)
-- `FS.Array(Schema<T>)` (`T[]`)
-- `FS.ObjectMap(Schema<T>)` (`{ [string]: T }`)
-- `FS.intersection(Schema<A>, Schema<B>, Schema<C>, ...)` (`A & B & C & ...`)
-- `FS.union(Schema<A>, Schema<B>, Schema<C>, ...)` (`A | B | C | ...`)
-- `FS.$Keys({ keyOne: 'one', keyTwo: 'two' })` (`'one' | 'two'`)
-- `FS.$ReadOnly(Schema<T>)` (`$ReadOnly<T>`)
-- `FS.$ReadOnlyArray(Schema<T>)` (`$ReadOnlyArray<T>`)
-- `FS.tuple(Schema<A>, Schema<B>, Schema<C>, ...)` (`[A, B, C, ...]`)
-- `FS.literal<V>(V)` (`V`)
+| Type                  | Constructor                               |
+|-----------------------|-------------------------------------------|
+| {| a: A, b: B |}      | FS.Object({ a: Schema<A>, b: Schema<B> }) |
+| Array<T>              | FS.Array(Schema<T>)                       |
+| { [string]: T }       | FS.ObjectMap(Schema<T>)                   |
+| A & B                 | FS.intersection(Schema<A>, Schema<B>)     |
+| A | B                 | FS.union(Schema<A>, Schema<B>)            |
+| $Keys<{ a: A, b: B }> | FS.$Keys({ a: Schema, b: Schema })        |
+| $ReadOnly<T>          | FS.$ReadOnly(Schema<T>)                   |
+| $ReadOnlyArray<T>     | FS.$ReadOnlyArray(Schema<T>)              |
+| [A, B]                | FS.tuple(Schema<A>, Schema<B>)            |
+| T                     | FS.literal<T>(Schema<T>)                  |
