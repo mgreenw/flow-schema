@@ -38,7 +38,7 @@ s
 
 | Type                  | Constructor                               |
 |-----------------------|-------------------------------------------|
-| {| a: A, b: B |}      | FS.Object({ a: Schema<A>, b: Schema<B> }) |
+| {&#124; a: A, b: B &#124;}      | FS.Object({ a: Schema<A>, b: Schema<B> }) |
 | Array<T>              | FS.Array(Schema<T>)                       |
 | { [string]: T }       | FS.ObjectMap(Schema<T>)                   |
 | A & B                 | FS.intersection(Schema<A>, Schema<B>)     |
