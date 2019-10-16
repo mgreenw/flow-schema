@@ -42,7 +42,7 @@ s
 | Array<T>              | FS.Array(Schema<T>)                       |
 | { [string]: T }       | FS.ObjectMap(Schema<T>)                   |
 | A & B                 | FS.intersection(Schema<A>, Schema<B>)     |
-| A | B                 | FS.union(Schema<A>, Schema<B>)            |
+| A &#124; B                 | FS.union(Schema<A>, Schema<B>)            |
 | $Keys<{ a: A, b: B }> | FS.$Keys({ a: Schema, b: Schema })        |
 | $ReadOnly<T>          | FS.$ReadOnly(Schema<T>)                   |
 | $ReadOnlyArray<T>     | FS.$ReadOnlyArray(Schema<T>)              |
