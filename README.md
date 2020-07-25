@@ -29,6 +29,8 @@ See the full API documentation [here](./doc/Flow.md).
 ### Simple
 
 ```javascript
+// @flow
+
 // Success
 const success = Flow.string.validate('success');
 
