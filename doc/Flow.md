@@ -32,7 +32,6 @@ _Here are the base type schemas and their Flow equivalent._
 ## Type Schema Constructors (by example)
 
 _Here are the more powerful "schema constructors" that, when called, these each return a `Schema` that validates to the listed Flow equivalent._
-s
 
 - `Flow.Object(schemas: { keyOne: Schema<A>, keyTwo: Schema<B>, ... })` (`{ { keyOne: A, keyTwo: B, ... } }`)
 - `Flow.Array(Schema<T>)` (`T[]`)
